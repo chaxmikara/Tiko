@@ -1,4 +1,26 @@
-<!-- NG-ZORRO -->
-<a href="https://github.com/NG-ZORRO/ng-zorro-antd" target="_blank" style="display: flex;align-items: center;justify-content: center;height: 100%;width: 100%;">
-  <img height="300" src="https://img.alicdn.com/tfs/TB1X.qJJgHqK1RjSZFgXXa7JXXa-89-131.svg">
-</a>
+<header class="main-header">
+
+  <div>
+    <h2>Ticket Booking System</h2>
+  </div>
+
+  <div class="nav-links">
+    <a routerLink="/Home" routerLinkActive="active">Home</a>
+    <a routerLink="/Booking" routerLinkActive="active">Booking</a>
+    <a routerLink="/Account" routerLinkActive="active">Account</a>
+    <div class="dropdown">
+      <button class="dropdown-toggle">Event</button>
+      <div class="dropdown-menu">
+        <a routerLink="/Event/Concerts" routerLinkActive="active">Concerts</a>
+        <a routerLink="/Event/Movies" routerLinkActive="active">Movies</a>
+        <a routerLink="/Event/Sports" routerLinkActive="active">Sports</a>
+      </div>
+    </div>
+
+    <div class="search-box">
+      <input type="text" placeholder="Search events...">
+      <button type="submit">Search</button>
+    </div>
+  </div>
+
+</header>
