@@ -20,13 +20,7 @@ public class UserDto {
 
     private UserRole role;
 
-    public UserDto getDto() {
-        UserDto userDto = new UserDto();
-        userDto.setId(id);
-        userDto.setName(name);
-        userDto.setEmail(email);
-        userDto.setRole(role);
 
-        return userDto;
-    }
 }
+
+

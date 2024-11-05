@@ -19,7 +19,7 @@ public class AuthServiveImpl implements AuthService {
         User user = new User();
 
         user.setName(signupRequestDTO.getName());
-        user.setName(signupRequestDTO.getName());
+        user.setLastName(signupRequestDTO.getLastName());
         user.setEmail(signupRequestDTO.getEmail());
         user.setPhone(signupRequestDTO.getPhone());
         user.setPassword(signupRequestDTO.getPassword());
@@ -27,5 +27,9 @@ public class AuthServiveImpl implements AuthService {
         user.setRole(UserRole.CLIENT);
 
         return userRepository.save(user).getDto();
+    }
+
+    public boolean presentByEmail(String email){
+        return userRepository.findFirstByEmail(email) !=null;
     }
 }
