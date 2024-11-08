@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 
-public class AuthServiveImpl implements AuthService {
+public class AuthServiceImpl implements AuthService {
 
     @Autowired
     private UserRepository userRepository;
@@ -29,7 +29,21 @@ public class AuthServiveImpl implements AuthService {
         return userRepository.save(user).getDto();
     }
 
-    public boolean presentByEmail(String email){
+    //new--
+    public Boolean presentByEmail(String email){
         return userRepository.findFirstByEmail(email) !=null;
+    }
+
+    public UserDto signupCompany(SignupRequestDTO signupRequestDTO){
+        User user = new User();
+
+        user.setName(signupRequestDTO.getName());
+        user.setEmail(signupRequestDTO.getEmail());
+        user.setPhone(signupRequestDTO.getPhone());
+        user.setPassword(signupRequestDTO.getPassword());
+
+        user.setRole(UserRole.COMPANY);
+
+        return userRepository.save(user).getDto();
     }
 }

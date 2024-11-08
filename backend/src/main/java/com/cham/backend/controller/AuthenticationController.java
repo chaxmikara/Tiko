@@ -1,5 +1,6 @@
 package com.cham.backend.controller;
 
+
 import com.cham.backend.dto.SignupRequestDTO;
 import com.cham.backend.dto.UserDto;
 import com.cham.backend.services.authentication.AuthService;
@@ -17,14 +18,24 @@ public class AuthenticationController {
     private AuthService authService;
 
     @PostMapping("/client/sign-up")
-    public ResponseEntity<?> signupClient(@RequestBody SignupRequestDTO signupRequestDTO){
+    public ResponseEntity<?> signupClient(@RequestBody SignupRequestDTO signupRequestDTO) {
 
-        if (authService.presentByEmail(signupRequestDTO.getEmail())){
-            return new ResponseEntity<>("Client already exists with this Email" , HttpStatus.NOT_ACCEPTABLE);
+        if (authService.presentByEmail(signupRequestDTO.getEmail())) {
+            return new ResponseEntity<>("Email already exists", HttpStatus.NOT_ACCEPTABLE);
         }
 
-        UserDto createdUser = authService.signupClient(signupRequestDTO);
+        UserDto createUser =authService.signupClient(signupRequestDTO);
+        return new ResponseEntity<>(createUser, HttpStatus.OK);
+    }
 
-        return new ResponseEntity<>(createdUser, HttpStatus.OK);
+    @PostMapping("/company/sign-up")
+    public ResponseEntity<?> signupCompany(@RequestBody SignupRequestDTO signupRequestDTO) {
+
+        if (authService.presentByEmail(signupRequestDTO.getEmail())) {
+            return new ResponseEntity<>("Email already exists", HttpStatus.NOT_ACCEPTABLE);
+        }
+
+        UserDto createUser =authService.signupClient(signupRequestDTO);
+        return new ResponseEntity<>(createUser, HttpStatus.OK);
     }
 }
