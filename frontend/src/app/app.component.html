@@ -1,26 +1,12 @@
-<header class="main-header">
-
+<nz-header class="main-header" nz-row nzType="flex">
   <div>
-    <h2>Ticket Booking System</h2>
+    <h2>Tiko</h2>
   </div>
 
-  <div class="nav-links">
-    <a routerLink="/Home" routerLinkActive="active">Home</a>
-    <a routerLink="/Booking" routerLinkActive="active">Booking</a>
-    <a routerLink="/Account" routerLinkActive="active">Account</a>
-    <div class="dropdown">
-      <button class="dropdown-toggle">Event</button>
-      <div class="dropdown-menu">
-        <a routerLink="/Event/Concerts" routerLinkActive="active">Concerts</a>
-        <a routerLink="/Event/Movies" routerLinkActive="active">Movies</a>
-        <a routerLink="/Event/Sports" routerLinkActive="active">Sports</a>
-      </div>
-    </div>
-
-    <div class="search-box">
-      <input type="text" placeholder="Search events...">
-      <button type="submit">Search</button>
-    </div>
+  <div class="nav-link">
+    <a nz-button nzType="link" routerLink="/Home" routerLinkActive="active">Home</a>
+    <a nz-button nzType="link" routerLink="/Booking" routerLinkActive="active">Boking</a>
+    <a nz-button nzType="link" routerLink="/Account" routerLinkActive="active">Account</a>
+    <a nz-button nzType="link" routerLink="/Event" routerLinkActive="active">Event</a>
   </div>
-
-</header>
+</nz-header>
