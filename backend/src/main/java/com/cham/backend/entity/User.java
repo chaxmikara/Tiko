@@ -3,9 +3,10 @@ package com.cham.backend.entity;
 
 import com.cham.backend.dto.UserDto;
 import com.cham.backend.enums.UserRole;
+import jakarta.persistence.*;
 import lombok.Data;
 
-import javax.persistence.*;
+
 
 @Entity
 @Table(name = "users")

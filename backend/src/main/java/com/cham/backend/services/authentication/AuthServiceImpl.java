@@ -6,6 +6,8 @@ import com.cham.backend.entity.User;
 import com.cham.backend.enums.UserRole;
 import com.cham.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,14 +24,14 @@ public class AuthServiceImpl implements AuthService {
         user.setLastName(signupRequestDTO.getLastName());
         user.setEmail(signupRequestDTO.getEmail());
         user.setPhone(signupRequestDTO.getPhone());
-        user.setPassword(signupRequestDTO.getPassword());
+        user.setPassword(new BCryptPasswordEncoder().encode(signupRequestDTO.getPassword()));
 
         user.setRole(UserRole.CLIENT);
 
         return userRepository.save(user).getDto();
     }
 
-    //new--
+
     public Boolean presentByEmail(String email){
         return userRepository.findFirstByEmail(email) !=null;
     }
@@ -40,7 +42,7 @@ public class AuthServiceImpl implements AuthService {
         user.setName(signupRequestDTO.getName());
         user.setEmail(signupRequestDTO.getEmail());
         user.setPhone(signupRequestDTO.getPhone());
-        user.setPassword(signupRequestDTO.getPassword());
+        user.setPassword(new BCryptPasswordEncoder().encode(signupRequestDTO.getPassword()));
 
         user.setRole(UserRole.COMPANY);
 
