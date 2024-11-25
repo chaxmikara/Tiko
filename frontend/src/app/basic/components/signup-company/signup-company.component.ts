@@ -25,7 +25,7 @@ export class SignupCompanyComponent {
       name: [null, [Validators.required]],
       address: [null, [Validators.required]],
       phone: [null],
-      password: [null, [Validators.required, Validators.minLength(8)]],
+      password: [null, [Validators.required]],
       confirmPassword: [null, [Validators.required]],
     });
   }

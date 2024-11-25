@@ -1,37 +1,49 @@
 <div class="bg">
-    <div class="parent">
-        <div class="child">
-            <div nz-col>
-                <h1 style="margin-left:55px;">Company Signup</h1>
-            </div>
-            <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
-                <nz-form-item>
-                    <nz-form-control nzHasFeedback nzErrorTip="This is not a valid Email address">
-                        <input nz-input placeholder="E-mail" formControlName="email" id="email" />
-                    </nz-form-control>
-                </nz-form-item>
-                <nz-form-item>
-                    <nz-form-control nzHasFeedback nzErrorTip="This is not a valid Password!">
-                        <input nz-input type="password" placeholder="Password" formControlName="Password" id="Password" />
-                    </nz-form-control>
-                    <nz-form-control nzHasFeedback nzErrorTip="This is not same Password!">
-                        <input nz-input type="password" placeholder="Confirm Password" formControlName="checkPassword" id="Password" />
-                    </nz-form-control>
-                    <nz-form-item>
-                        <nz-form-control nzHasFeedback nzErrorTip="This is not a valid name">
-                            <input nz-input placeholder="Name" formControlName="name" id="name" />
-                        </nz-form-control>
-                        <nz-form-control nzHasFeedback nzErrorTip="This is not a valid Address">
-                            <input nz-input placeholder="Address" formControlName="address" id="address" />
-                        </nz-form-control>
-                        <nz-form-control nzHasFeedback nzErrorTip="This is not a valid phone Number">
-                            <input nz-input placeholder="phone" formControlName="phoneNumber" id="phoneNumber" />
-                        </nz-form-control>
-                    </nz-form-item>
-                </nz-form-item>
+  <div class="parent">
+    <div class="child">
+      <div nz-col>
+        <h1 style="margin-left: 55px;">Company Signup</h1>
+      </div>
+      <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+        <nz-form-item>
+          <nz-form-control nzHasFeedback nzErrorTip="This is not a valid Email address">
+            <input nz-input placeholder="E-mail" formControlName="email" id="email" />
+          </nz-form-control>
+        </nz-form-item>
 
-                <button nz-button class="Login from button login from-margin" [nzType]="'primary'">Register</button>
-                Or <a routerLink="/login">Login now!</a>
-            </form>
+        <nz-form-item>
+          <nz-form-control nzHasFeedback nzErrorTip="This is not a valid Password!">
+            <input nz-input type="password" placeholder="Password" formControlName="password" id="email" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-control nzHasFeedback nzErrorTip="Passwords do not match!">
+            <input nz-input type="password" placeholder="Confirm Password" formControlName="checkPassword" id="email" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-control nzHasFeedback nzErrorTip="This is not a valid name">
+            <input nz-input placeholder="Name" formControlName="name" id="email" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-control nzHasFeedback nzErrorTip="This is not a valid Address">
+            <input nz-input placeholder="Address" formControlName="address" id="email" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-control nzHasFeedback nzErrorTip="This is not a valid phone number">
+            <input nz-input placeholder="Phone" formControlName="phoneNumber" id="email" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <button nz-button class="Login from button login from-margin" [nzType]="'primary'">Register</button>
+        Or <a routerLink="/login">Login now!</a>
+      </form>
     </div>
+  </div>
 </div>

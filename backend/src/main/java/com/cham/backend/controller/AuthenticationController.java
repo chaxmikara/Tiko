@@ -1,6 +1,5 @@
 package com.cham.backend.controller;
 
-
 import com.cham.backend.dto.AuthenticationRequest;
 import com.cham.backend.dto.SignupRequestDTO;
 import com.cham.backend.dto.UserDto;
@@ -18,6 +17,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @RestController //api for the project
+@CrossOrigin(origins = "*")
 public class AuthenticationController {
 
     @Autowired

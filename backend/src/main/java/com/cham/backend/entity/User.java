@@ -34,6 +34,7 @@ public class User {
         UserDto userDto = new UserDto();
         userDto.setId(id);
         userDto.setName(name);
+        userDto.setLastName(lastName);
         userDto.setEmail(email);
         userDto.setRole(role);
 
