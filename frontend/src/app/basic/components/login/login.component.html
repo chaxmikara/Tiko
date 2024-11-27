@@ -10,7 +10,7 @@
             <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
                 <nz-form-item>
                     <nz-form-control nzErrorTip="Please input your email">
-                        <nz-input-group nzPrefixIcon="user">
+                        <nz-input-group nzPrefixIcon="user-o">
                             <input type="text" nz-input formControlName="userName" placeholder="Email"/>
                         </nz-input-group>
                     </nz-form-control>
@@ -18,14 +18,14 @@
 
                 <nz-form-item>
                     <nz-form-control nzErrorTip="Please input your Password!">
-                        <nz-input-group nzPrefixIcon="lock">
+                        <nz-input-group nzPrefixIcon="lock-o">
                             <input type="password" nz-input formControlName="password" placeholder="Password"/>
                         </nz-input-group>
                     </nz-form-control>
                 </nz-form-item>
 
                 <button nz-button class="login-form-button login-form-margin"[nzType]="'primary'">Log in</button>
-                Or <a routerLink="/register">register now!</a>
+                Or <a routerLink="/register_client">register now!</a>
             </form>
 
         </div>

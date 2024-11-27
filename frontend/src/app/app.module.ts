@@ -10,12 +10,14 @@ import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { HttpClient, HttpClientModule, provideHttpClient } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { DemoNgZorroAntdModule } from './DemoNgZorroAndModule';
 import { SignupClientComponent } from './basic/components/signup-client/signup-client.component';
 import { SignupCompanyComponent } from './basic/components/signup-company/signup-company.component';
+import { NZ_ICONS, NzIconModule } from 'ng-zorro-antd/icon';
+import { UserOutline, LockOutline } from '@ant-design/icons-angular/icons';
 
-
+const icons = [UserOutline, LockOutline];
 
 registerLocaleData(en);
 
@@ -33,14 +35,15 @@ registerLocaleData(en);
     FormsModule,
     HttpClientModule,
     DemoNgZorroAntdModule,
+    NzIconModule,
     ReactiveFormsModule
-
   ],
   providers: [
     provideClientHydration(),
     { provide: NZ_I18N, useValue: en_US },
     provideAnimationsAsync(),
-    provideHttpClient()
+    provideHttpClient(withFetch()),
+    { provide: NZ_ICONS, useValue: icons }
   ],
   bootstrap: [AppComponent]
 })
