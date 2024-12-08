@@ -1,6 +1,5 @@
 package com.cham.backend.dto;
 
-import com.cham.backend.enums.UserRole;
 import lombok.Data;
 
 @Data
@@ -14,13 +13,9 @@ public class UserDto {
 
     private String name;
 
-    private String lastName;
 
-    private String phone;
 
-    private UserRole role;
+
 
 
 }
-
-
