@@ -22,14 +22,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@RestController
-@CrossOrigin(origins = "*")
+@RestController //api for the project
+@CrossOrigin(origins = "http://localhost:4200")
 public class AuthenticationController {
 
     @Autowired
     private AuthService authService;
+
 
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
@@ -48,45 +50,55 @@ public class AuthenticationController {
 
     @PostMapping("/client/sign-up")
     public ResponseEntity<?> signupClient(@RequestBody SignupRequestDTO signupRequestDTO) {
+
         if (authService.presentByEmail(signupRequestDTO.getEmail())) {
-            return new ResponseEntity<>("Email already exists", HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<>("Email already exists please enter another one!", HttpStatus.NOT_ACCEPTABLE);
         }
-        UserDto createUser = authService.signupClient(signupRequestDTO);
+
+        UserDto createUser =authService.signupClient(signupRequestDTO);
         return new ResponseEntity<>(createUser, HttpStatus.OK);
     }
 
     @PostMapping("/company/sign-up")
     public ResponseEntity<?> signupCompany(@RequestBody SignupRequestDTO signupRequestDTO) {
+
         if (authService.presentByEmail(signupRequestDTO.getEmail())) {
             return new ResponseEntity<>("Email already exists", HttpStatus.NOT_ACCEPTABLE);
         }
-        UserDto createUser = authService.signupCompany(signupRequestDTO);
+
+        UserDto createUser =authService.signupCompany(signupRequestDTO);
         return new ResponseEntity<>(createUser, HttpStatus.OK);
     }
 
-    @PostMapping("/authenticate")
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws IOException, JSONException {
-        try {
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                    authenticationRequest.getUsername(), authenticationRequest.getPassword()
-            ));
-        } catch (BadCredentialsException e) {
-            throw new BadCredentialsException("Incorrect Username or Password", e);
-        }
-
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
-        final String jwt = jwtUtil.generateToken(userDetails.getUsername());
-        User user = userRepository.findFirstByEmail(authenticationRequest.getUsername());
-
-        JSONObject responseBody = new JSONObject()
-                .put("userId", user.getId())
-                .put("role", user.getRole())
-                .put("token", TOKEN_PREFIX + jwt);
-
-        return ResponseEntity.ok()
-                .header("Access-Control-Expose-Headers", "Authorization")
-                .header("Access-Control-Allow-Headers", "Authorization, X-PINGOTHER, Origin, X-Requested-With, Content-Type, Accept, X-Custom-header")
-                .header(HEADER_STRING, TOKEN_PREFIX + jwt)
-                .body(responseBody.toString());
+    @PostMapping({"/authenticate"})
+//    public void createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest,
+//                                          HttpServletResponse response) throws IOException, JSONException {
+//        try{
+//            //it try to authenticate the user
+//            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword())
+//            );
+//        }catch (BadCredentialsException e){
+//            throw new BadCredentialsException("Wrong Input! Double check e-mail and password", e);
+//        }
+//
+//        final UserDetails userDetails =userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+//
+//        //JWT Token generation
+//        final String jwt=jwtUtil.generateToken(userDetails.getUsername());
+//        User user =userRepository.findFirstByEmail(authenticationRequest.getUsername());
+//
+//        response.getWriter().write(new JSONObject()
+//                .put("userId",user.getId())
+//                .put("role",user.getRole())
+//                .toString()
+//        );
+//
+//        // Add headers for JWT and CORS
+//        response.addHeader("Access-Control-Expose-Headers", "Authorization");
+//        response.addHeader("Access-Control-Allow-Headers", "Authorization, X-PINGOTHER, Origin, X-Requested-With, Content-Type, Accept, X-Custom-header");
+//        response.addHeader(HEADER_STRING, TOKEN_PREFIX + jwt);
+//    }
+    public void createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest,HttpServletResponse response) throws IOException, JSONException{
+        System.out.println("Test");
     }
 }

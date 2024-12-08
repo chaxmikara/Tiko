@@ -1,0 +1,35 @@
+<div class="bg">
+  <div class="parent">
+    <div class="child">
+      <div nz-col>
+        <h1 style="margin-left: 55px;">Company Signup</h1>
+      </div>
+      <form nz-form (ngSubmit)="register()">
+        <nz-form-item>
+          <nz-form-control nzHasFeedback nzErrorTip="Please input your username">
+            <input nz-input placeholder="Username" [(ngModel)]="user.username" name="username" required />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-control nzHasFeedback nzErrorTip="This is not a valid Email address">
+            <input nz-input placeholder="E-mail" [(ngModel)]="user.email" name="email" required />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-control nzHasFeedback nzErrorTip="This is not a valid Password!">
+            <input nz-input type="password" placeholder="Password" [(ngModel)]="user.password" name="password" required />
+          </nz-form-control>
+        </nz-form-item>
+
+        <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Register</button>
+        Or <a routerLink="/login">Login now!</a>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="gradient-background">
+  <router-outlet></router-outlet>
+</div>

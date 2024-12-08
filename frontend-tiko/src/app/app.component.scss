@@ -1,0 +1,31 @@
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #000;
+  padding: 10px 20px;
+}
+
+.logo h2 {
+  color: #3799ef;
+  margin: 0;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.nav-links a.active {
+  font-weight: bold;
+  border-bottom: 2px solid #3799ef;
+}
+
+.nav-links a:hover {
+  color: #3799ef;
+}

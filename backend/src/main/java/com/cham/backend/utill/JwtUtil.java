@@ -19,13 +19,9 @@ public class JwtUtil {
     public static final String SECRET = "FG874TFHGCN3CNA8Y8YC8Y7478747CHGSH7777CHAM86464376HFDSIHU8HFSHZILVGBSLZANCBJSDB";
 
     private String createToken(Map<String, Object> claims, String userName) {
-        return Jwts.builder()
-                .setClaims(claims)
-                .setSubject(userName)
-                .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 30))
-                .signWith(SignatureAlgorithm.HS256, getSignKey())
-                .compact();
+        return Jwts.builder() .setClaims(claims).setSubject(userName).setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis()+1000*60*30))
+                .signWith(SignatureAlgorithm.HS256, getSignKey()).compact();
     }
 
     private Key getSignKey() {
@@ -37,12 +33,8 @@ public class JwtUtil {
         Map<String, Object> claims = new HashMap<>();
         return createToken(claims, userName);
     }
-
     private Claims extractAllClaims(String token) {
-        return Jwts.parser()
-                .setSigningKey(getSignKey())
-                .parseClaimsJws(token)
-                .getBody();
+        return Jwts .parser().setSigningKey(getSignKey()) .parseClaimsJws(token).getBody();
     }
 
     public <T> T extractClaims(String token, Function<Claims, T> claimsResolver) {
@@ -63,7 +55,7 @@ public class JwtUtil {
     }
 
     public Boolean validateToken(String token, UserDetails userDetails) {
-        final String username = extractUsername(token);
+        final String username = (String) extractUsername(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 }
