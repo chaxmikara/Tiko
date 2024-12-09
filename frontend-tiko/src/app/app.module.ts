@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { AllTicketsComponent } from './components/all-tickets/all-tickets.component';
 
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzGridModule } from 'ng-zorro-antd/grid';
@@ -22,7 +23,6 @@ import { UserOutline, LockOutline } from '@ant-design/icons-angular/icons';
 
 import { AuthService } from './services/auth.service';
 import { LogService } from './services/log.service';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { AdminService } from './services/admin.service';
 
 @NgModule({
@@ -30,7 +30,8 @@ import { AdminService } from './services/admin.service';
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    AllTicketsComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +52,6 @@ import { AdminService } from './services/admin.service';
     AuthService,
     LogService,
     AdminService,
-    provideAnimationsAsync(),
     { provide: NZ_ICONS, useValue: [UserOutline, LockOutline] }
   ],
   bootstrap: [AppComponent]

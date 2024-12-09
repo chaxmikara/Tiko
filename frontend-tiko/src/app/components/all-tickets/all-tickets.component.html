@@ -1,0 +1,28 @@
+<h3>Client Dashboard</h3>
+<div class="bg">
+    <div style="margin-top: 10px;" class="child" *ngFor="let ticket of tickets">
+        <div nz-row>
+            <div nz-col nzSpan="8">
+                <img class="profile" [src]="updateImg(ticket.returnedImg)" [alt]="ticket.title"
+                    style="height: 130px; width: 200px; border-radius: 10px;" />
+            </div>
+            <div nz-col nzSpan="16">
+                <h2 style="cursor: pointer; color: #108ee9;">{{ ticket.title }}</h2>
+                <hr>
+                <h5>Price: <b>${{ ticket.price.toFixed(2) }}</b></h5>
+                <h5>Description: <b>{{ ticket.description }}</b></h5>
+                <hr>
+                <div style="float: right;">
+                    <button nzSize="small" nz-button nzType="primary"
+                        [routerLink]="['/company/ticket', ticket.id]">Update</button>
+                    <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary" nzDanger
+                        (click)="deleteTicket(ticket.id)">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="tickets.length === 0" class="no-tickets">
+        <p>No tickets available</p>
+    </div>
+</div>

@@ -25,4 +25,10 @@ public class AdminController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
+
+    @GetMapping("/ticket/{userId}")
+    public ResponseEntity<?> getAllTicketsByUserId(@PathVariable Long userId) {
+        return ResponseEntity.ok(adminService.getAllTicketAdds(userId));
+
+    }
 }

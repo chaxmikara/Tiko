@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -36,5 +38,11 @@ public class AdminServiceImpl implements AdminService {
 
     }
         return false;
+    }
+
+
+
+    public List<TicketAddDTO> getAllTicketAdds(long userId){
+        return ticketAddRepository.findAllByUserId(userId).stream().map((TicketAdd::getTicketAddDTO)).collect(Collectors.toList());
     }
 }
