@@ -23,6 +23,7 @@ import { UserOutline, LockOutline } from '@ant-design/icons-angular/icons';
 import { AuthService } from './services/auth.service';
 import { LogService } from './services/log.service';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { AdminService } from './services/admin.service';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
   providers: [
     AuthService,
     LogService,
+    AdminService,
     provideAnimationsAsync(),
     { provide: NZ_ICONS, useValue: [UserOutline, LockOutline] }
   ],

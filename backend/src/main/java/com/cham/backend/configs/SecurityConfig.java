@@ -35,6 +35,7 @@ public class SecurityConfig {
                 .authorizeRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()  // Allow login
                         .requestMatchers("/api/ticketing/config", "/api/ticketing/logs","/logs").permitAll()  // Allow dashboard logging and websocket
+                        .requestMatchers("/api/admin/postTicketAdd/**").permitAll()  // Allow access to postTicketAdd endpoint
                         .anyRequest().authenticated()
                 )
                 .formLogin().disable()
