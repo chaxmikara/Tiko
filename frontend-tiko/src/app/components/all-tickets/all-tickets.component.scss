@@ -1,0 +1,65 @@
+.bg {
+    background-color: #f8f8f8;
+    padding: 20px;
+}
+
+.child {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.profile {
+    height: 130px;
+    width: 200px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+h2 {
+    cursor: pointer;
+    color: #108ee9;
+    margin: 0;
+}
+
+h5 {
+    margin: 5px 0;
+}
+
+button {
+    margin-left: 10px;
+}
+
+button[nz-button][nzType="primary"] {
+    background-color: #1890ff;
+    border-color: #1890ff;
+}
+
+button[nz-button][nzType="primary"][nzDanger] {
+    background-color: #ff4d4f;
+    border-color: #ff4d4f;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #e8e8e8;
+    margin: 10px 0;
+}
+
+.no-tickets {
+    text-align: center;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+img.profile {
+    object-fit: cover;
+
+    &[src="assets/placeholder-image.jpg"] {
+        opacity: 0.5;
+    }
+}
