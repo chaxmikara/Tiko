@@ -85,4 +85,30 @@ button {
     position: relative;
     left: 118px;
     top: -42px;
+
+
+}
+
+.custom-notification {
+    .ant-notification-notice-message {
+        font-weight: bold;
+    }
+
+    .ant-notification-notice-description {
+        font-size: 14px;
+    }
+}
+
+.custom-modal {
+    .ant-modal-content {
+        border-radius: 8px;
+    }
+
+    .ant-modal-header {
+        font-weight: bold;
+    }
+
+    .ant-modal-body {
+        font-size: 14px;
+    }
 }

@@ -38,6 +38,22 @@
                         </nz-form-item>
                     </div>
                     <div nz-col nzSpan="24">
+                        <nz-form-item>
+                            <nz-form-control nzHasFeedback [nzXs]="24" nzErrorTip="This Input Is Required!">
+                                <input nz-input placeholder="Release Rate (seconds)" formControlName="releaseRate"
+                                    type="number" />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                    <div nz-col nzSpan="24">
+                        <nz-form-item>
+                            <nz-form-control nzHasFeedback [nzXs]="24" nzErrorTip="This Input Is Required!">
+                                <input nz-input placeholder="Number of Tickets" formControlName="numberOfTickets"
+                                    type="number" />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                    <div nz-col nzSpan="24">
                         <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">
                             Add
                         </button>

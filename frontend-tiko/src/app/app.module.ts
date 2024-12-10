@@ -24,6 +24,10 @@ import { UserOutline, LockOutline } from '@ant-design/icons-angular/icons';
 import { AuthService } from './services/auth.service';
 import { LogService } from './services/log.service';
 import { AdminService } from './services/admin.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DemoNgZorroAntdModule } from './DemoNgZorroAndModule';
+
+const icons = [UserOutline, LockOutline];
 
 @NgModule({
   declarations: [
@@ -36,6 +40,7 @@ import { AdminService } from './services/admin.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
     NzLayoutModule,
@@ -45,8 +50,12 @@ import { AdminService } from './services/admin.service';
     NzInputModule,
     NzIconModule,
     NzFormModule,
+    NzIconModule.forRoot(icons),
     NzButtonModule,
     NzNotificationModule,
+    NzNotificationModule,
+    BrowserAnimationsModule,
+    DemoNgZorroAntdModule
   ],
   providers: [
     AuthService,

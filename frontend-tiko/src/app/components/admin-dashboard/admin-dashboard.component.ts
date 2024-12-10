@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { AdminService } from '../../services/admin.service'; // Correct the import path
+import { NzModalService } from 'ng-zorro-antd/modal';
+import { AdminService } from '../../services/admin.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -16,9 +16,9 @@ export class AdminDashboardComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private notification: NzNotificationService,
+    private modal: NzModalService,
     private router: Router,
-    private adminService: AdminService // Inject your service
+    private adminService: AdminService
   ) { }
 
   ngOnInit() {
@@ -26,6 +26,8 @@ export class AdminDashboardComponent implements OnInit {
       serviceName: [null, [Validators.required]],
       description: [null, [Validators.required]],
       price: [null, [Validators.required]],
+      releaseRate: [null, [Validators.required]],
+      numberOfTickets: [null, [Validators.required]],
     });
   }
 
@@ -45,25 +47,39 @@ export class AdminDashboardComponent implements OnInit {
   postTickeetAd() {
     const formData: FormData = new FormData();
     formData.append('img', this.selectedFile as File);
-    formData.append('Title', this.validateForm.get('serviceName')?.value);
-    formData.append('Description', this.validateForm.get('description')?.value);
+    formData.append('title', this.validateForm.get('serviceName')?.value);
+    formData.append('description', this.validateForm.get('description')?.value);
     formData.append('price', this.validateForm.get('price')?.value);
+    formData.append('releaseRate', this.validateForm.get('releaseRate')?.value);
+    formData.append('numberOfTickets', this.validateForm.get('numberOfTickets')?.value);
 
     const userId = 14; // Replace with the actual user ID
 
     this.adminService.postAd(userId, formData).subscribe(res => {
-      this.notification.success(
-        'SUCCESS',
-        'Ad Posted Successfully!',
-        { nzDuration: 5000 }
-      );
-      this.router.navigateByUrl('/admin/tickedadd');
+      this.showSuccessModal();
+      this.router.navigateByUrl('/all-tickets'); // Navigate to AllTicketsComponent
     }, error => {
-      this.notification.error(
-        'ERROR',
-        `${error.error}`,
-        { nzDuration: 5000 }
-      );
+      this.showErrorModal(error);
+    });
+  }
+
+  showSuccessModal() {
+    this.modal.success({
+      nzTitle: 'SUCCESS',
+      nzContent: 'Ad Posted Successfully!',
+      nzCentered: true,
+      nzStyle: { backgroundColor: '#f6ffed', border: '1px solid #b7eb8f' },
+      nzClassName: 'custom-modal'
+    });
+  }
+
+  showErrorModal(error: any) {
+    this.modal.error({
+      nzTitle: 'ERROR',
+      nzContent: `${error}`,
+      nzCentered: true,
+      nzStyle: { backgroundColor: '#fff1f0', border: '1px solid #ffa39e' },
+      nzClassName: 'custom-modal'
     });
   }
 }
