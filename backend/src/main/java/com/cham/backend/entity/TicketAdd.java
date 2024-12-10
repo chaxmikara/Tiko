@@ -20,6 +20,8 @@ public class TicketAdd {
     private String title;
     private String description;
     private double price;
+    private int releaseRate;
+    private int numberOfTickets;
 
     @Lob
     @Column(columnDefinition = "LONGBLOB")
@@ -30,6 +32,7 @@ public class TicketAdd {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 
+
     public TicketAddDTO getTicketAddDTO() {
         TicketAddDTO ticketAddDTO = new TicketAddDTO();
 
@@ -38,6 +41,8 @@ public class TicketAdd {
         ticketAddDTO.setDescription(description);
         ticketAddDTO.setPrice(price);
         ticketAddDTO.setReturnedImg(img);
+        ticketAddDTO.setReleaseRate(releaseRate);
+        ticketAddDTO.setNumberOfTickets(numberOfTickets);
 
         return ticketAddDTO;
     }

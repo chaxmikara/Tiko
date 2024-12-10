@@ -20,5 +20,9 @@ public class TicketAddDTO {
     private byte[] returnedImg;
 
     private Long userId;
+
+    private int numberOfTickets;
+
+    private int releaseRate;
 }
 

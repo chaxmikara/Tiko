@@ -21,28 +21,24 @@ public class AdminServiceImpl implements AdminService {
     @Autowired
     private TicketAddRepository ticketAddRepository;
 
-    public boolean postTicketAdd(Long userId, TicketAddDTO ticketAddDTO ) throws IOException {
-        Optional <User> optionalUser=userRepository.findById(userId);
-        if(optionalUser.isPresent()){
-            TicketAdd ticketAdd=new TicketAdd();
-
+    public boolean postTicketAdd(Long userId, TicketAddDTO ticketAddDTO) throws IOException {
+        Optional<User> optionalUser = userRepository.findById(userId);
+        if (optionalUser.isPresent()) {
+            TicketAdd ticketAdd = new TicketAdd();
             ticketAdd.setTitle(ticketAddDTO.getTitle());
             ticketAdd.setDescription(ticketAddDTO.getDescription());
             ticketAdd.setImg(ticketAddDTO.getImg().getBytes());
             ticketAdd.setPrice(ticketAddDTO.getPrice());
-
+            ticketAdd.setReleaseRate(ticketAddDTO.getReleaseRate());
+            ticketAdd.setNumberOfTickets(ticketAddDTO.getNumberOfTickets());
             ticketAdd.setUser(optionalUser.get());
-
             ticketAddRepository.save(ticketAdd);
             return true;
-
-    }
+        }
         return false;
     }
 
-
-
-    public List<TicketAddDTO> getAllTicketAdds(long userId){
-        return ticketAddRepository.findAllByUserId(userId).stream().map((TicketAdd::getTicketAddDTO)).collect(Collectors.toList());
+    public List<TicketAddDTO> getAllTicketAdds(long userId) {
+        return ticketAddRepository.findAllByUserId(userId).stream().map(TicketAdd::getTicketAddDTO).collect(Collectors.toList());
     }
 }
