@@ -1,7 +1,5 @@
-// admin.service.ts
-
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from './auth.service';
@@ -14,6 +12,8 @@ export interface Ticket {
     price: number;
     returnedImg: string;
     userId: number | null;
+    numberOfTickets: number;
+    releaseRate: number;
 }
 
 export interface ApiResponse<T> {
@@ -46,13 +46,8 @@ export class AdminService {
     }
 
     // Read tickets
-    getAllAdsByUserId(): Observable<Ticket[]> {
-        const userId = this.authService.getUserId();
-        if (!userId) {
-            throw new Error('User ID is null');
-        }
+    getAllAdsByUserId(userId: number): Observable<Ticket[]> {
         const headers = this.authService.getAuthHeaders();
-
         return this.http.get<Ticket[]>(
             `${this.apiUrl}/ticket/${userId}`,
             { headers }
@@ -65,7 +60,7 @@ export class AdminService {
     getTicketById(ticketId: number): Observable<Ticket> {
         const headers = this.authService.getAuthHeaders();
         return this.http.get<Ticket>(
-            `${this.apiUrl}/ticket/single/${ticketId}`,
+            `${this.apiUrl}/ticket/${ticketId}`,
             { headers }
         ).pipe(
             catchError(this.handleError)
@@ -85,9 +80,9 @@ export class AdminService {
     }
 
     // Delete ticket
-    deleteAd(ticketId: number): Observable<ApiResponse<void>> {
+    deleteTicket(ticketId: number): Observable<void> {
         const headers = this.authService.getAuthHeaders();
-        return this.http.delete<ApiResponse<void>>(
+        return this.http.delete<void>(
             `${this.apiUrl}/ticket/${ticketId}`,
             { headers }
         ).pipe(
@@ -95,27 +90,52 @@ export class AdminService {
         );
     }
 
-    // Error handler
-    private handleError(error: HttpErrorResponse) {
-        let errorMessage = 'An unknown error occurred!';
-        if (error.error instanceof ErrorEvent) {
-            // Client-side error
-            errorMessage = `Error: ${error.error.message}`;
-        } else {
-            // Server-side error
-            errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-        }
-        console.error(errorMessage);
-        return throwError(() => new Error(errorMessage));
+    // Increase ticket count
+    increaseTicketCount(ticketId: number): Observable<void> {
+        const headers = this.authService.getAuthHeaders();
+        return this.http.post<void>(
+            `${this.apiUrl}/increaseTicketCount/${ticketId}`,
+            {},
+            { headers }
+        ).pipe(
+            catchError(this.handleError)
+        );
     }
 
-    // Helper method to handle form data
-    createTicketFormData(ticket: Partial<Ticket>, file?: File): FormData {
-        const formData = new FormData();
-        if (ticket.title) formData.append('title', ticket.title);
-        if (ticket.description) formData.append('description', ticket.description);
-        if (ticket.price) formData.append('price', ticket.price.toString());
-        if (file) formData.append('img', file);
-        return formData;
+    // Post ticket to client dashboard
+    postToClientDashboard(ticket: Ticket): Observable<void> {
+        const headers = this.authService.getAuthHeaders();
+        return this.http.post<void>(
+            `${this.apiUrl}/postToClientDashboard`,
+            ticket,
+            { headers }
+        ).pipe(
+            catchError(this.handleError)
+        );
+    }
+
+    // Buy ticket
+    buyTicket(ticketId: number, buyerDetails: any, price: number): Observable<void> {
+        const headers = this.authService.getAuthHeaders();
+        return this.http.post<void>(
+            `${this.apiUrl}/buyTicket`,
+            { ticketId, buyerDetails, price },
+            { headers }
+        ).pipe(
+            catchError(this.handleError)
+        );
+    }
+
+    // Handle errors
+    private handleError(error: HttpErrorResponse) {
+        let errorMessage = 'Unknown error!';
+        if (error.error instanceof ErrorEvent) {
+            // Client-side errors
+            errorMessage = `Error: ${error.error.message}`;
+        } else {
+            // Server-side errors
+            errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+        }
+        return throwError(errorMessage);
     }
 }

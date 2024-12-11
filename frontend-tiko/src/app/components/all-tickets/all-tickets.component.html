@@ -1,28 +1,23 @@
-<h3>Client Dashboard</h3>
-<div class="bg">
-    <div style="margin-top: 10px;" class="child" *ngFor="let ticket of tickets">
-        <div nz-row>
-            <div nz-col nzSpan="8">
-                <img class="profile" [src]="updateImg(ticket.returnedImg)" [alt]="ticket.title"
-                    style="height: 130px; width: 200px; border-radius: 10px;" />
-            </div>
-            <div nz-col nzSpan="16">
-                <h2 style="cursor: pointer; color: #108ee9;">{{ ticket.title }}</h2>
-                <hr>
-                <h5>Price: <b>${{ ticket.price.toFixed(2) }}</b></h5>
-                <h5>Description: <b>{{ ticket.description }}</b></h5>
-                <hr>
-                <div style="float: right;">
-                    <button nzSize="small" nz-button nzType="primary"
-                        [routerLink]="['/company/ticket', ticket.id]">Update</button>
-                    <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary" nzDanger
-                        (click)="deleteTicket(ticket.id)">Delete</button>
-                </div>
+<div class="container mt-5">
+    <h3>Vendor Control Center</h3>
+    <div class="row" *ngFor="let ticket of tickets">
+        <div class="col-md-4">
+            <img class="profile img-thumbnail" [src]="updateImg(ticket.returnedImg)" [alt]="ticket.title" />
+        </div>
+        <div class="col-md-8">
+            <h2>{{ ticket.title }}</h2>
+            <hr>
+            <h5>Price: <b>${{ ticket.price.toFixed(2) }}</b></h5>
+            <h5>Description: <b>{{ ticket.description }}</b></h5>
+            <hr>
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-primary btn-sm" (click)="startTicketing(ticket.id)">Start Ticketing</button>
+                <button class="btn btn-secondary btn-sm ml-2" (click)="stopTicketing(ticket.id)">Stop Ticketing</button>
+                <button class="btn btn-danger btn-sm ml-2" (click)="deleteTicket(ticket.id)">Delete</button>
             </div>
         </div>
     </div>
-
-    <div *ngIf="tickets.length === 0" class="no-tickets">
+    <div *ngIf="tickets.length === 0" class="text-center mt-5">
         <p>No tickets available</p>
     </div>
 </div>
