@@ -1,0 +1,23 @@
+<div class="container mt-5">
+    <h3>Vendor Control Center</h3>
+    <div class="row" *ngFor="let ticket of tickets">
+        <div class="col-md-4">
+            <img class="profile img-thumbnail" [src]="updateImg(ticket.returnedImg)" [alt]="ticket.title" />
+        </div>
+        <div class="col-md-8">
+            <h2>{{ ticket.title }}</h2>
+            <hr>
+            <h5>Price: <b>${{ ticket.price.toFixed(2) }}</b></h5>
+            <h5>Description: <b>{{ ticket.description }}</b></h5>
+            <hr>
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-primary btn-sm" (click)="startTicketing(ticket.id)">Start Ticketing</button>
+                <button class="btn btn-secondary btn-sm ml-2" (click)="stopTicketing(ticket.id)">Stop Ticketing</button>
+                <button class="btn btn-danger btn-sm ml-2" (click)="deleteTicket(ticket.id)">Delete</button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="tickets.length === 0" class="text-center mt-5">
+        <p>No tickets available</p>
+    </div>
+</div>

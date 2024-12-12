@@ -1,0 +1,39 @@
+<div class="container mt-5">
+    <h3>Client Dashboard</h3>
+    <div class="row" *ngFor="let ticket of tickets">
+        <div class="col-md-4">
+            <img class="profile img-thumbnail" [src]="updateImg(ticket.returnedImg)" [alt]="ticket.title" />
+        </div>
+        <div class="col-md-8">
+            <h2>{{ ticket.title }}</h2>
+            <hr>
+            <h5>Price: <b>${{ ticket.price.toFixed(2) }}</b></h5>
+            <h5>Description: <b>{{ ticket.description }}</b></h5>
+            <h5>Available Tickets: <b>{{ ticket.numberOfTickets }}</b></h5>
+            <hr>
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-primary btn-sm" (click)="showBuyTicketForm(ticket)">Buy Ticket</button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="tickets.length === 0" class="text-center mt-5">
+        <p>No tickets available</p>
+    </div>
+</div>
+
+<!-- Buy Ticket Modal -->
+<nz-modal [(nzVisible)]="isBuyTicketModalVisible" nzTitle="Buy Ticket" (nzOnCancel)="handleCancel()"
+    (nzOnOk)="handleBuyTicket()">
+    <form nz-form [formGroup]="buyTicketForm">
+        <nz-form-item>
+            <nz-form-control nzErrorTip="Please input your first name!">
+                <input nz-input formControlName="firstName" placeholder="First Name" />
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-control nzErrorTip="Please input your phone number!">
+                <input nz-input formControlName="phoneNumber" placeholder="Phone Number" />
+            </nz-form-control>
+        </nz-form-item>
+    </form>
+</nz-modal>

@@ -1,0 +1,21 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">TIKO</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item" *ngIf="!isLoggedIn && currentRoute !== '/login' && currentRoute !== '/register'">
+                    <a class="nav-link" routerLink="/login">Login</a>
+                </li>
+                <li class="nav-item" *ngIf="!isLoggedIn && currentRoute !== '/login' && currentRoute !== '/register'">
+                    <a class="nav-link" routerLink="/register">Register</a>
+                </li>
+                <li class="nav-item" *ngIf="isLoggedIn">
+                    <a class="nav-link" routerLink="/admin-dashboard">Admin Dashboard</a>
+                </li>
+                <li class="nav-item" *ngIf="isLoggedIn">
+                    <a class="nav-link" (click)="logout()">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
