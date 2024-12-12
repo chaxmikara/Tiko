@@ -1,45 +1,24 @@
 package com.cham.backend.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
 
-import com.cham.backend.dto.UserDto;
-import com.cham.backend.enums.UserRole;
-import jakarta.persistence.*;
-import lombok.Data;
-
-
-
+@Setter
+@Getter
 @Entity
-@Table(name = "users")
-@Data
-
 public class User {
 
+    // Getters and Setters
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //this means id automatically generate value when create a new one
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private String email;
-
+    private String username;
     private String password;
-
-    private String name;
-
-    private String lastName;
-
-    private String phone;
-
-    private UserRole role;
-
-    public UserDto getDto(){
-        UserDto userDto = new UserDto();
-        userDto.setId(id);
-        userDto.setName(name);
-        userDto.setLastName(lastName);
-        userDto.setEmail(email);
-        userDto.setRole(role);
-
-        return userDto;
-    }
-
+    private String email;
+    private String role;
 
 }

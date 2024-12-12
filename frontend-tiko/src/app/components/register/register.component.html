@@ -1,0 +1,22 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card p-4">
+    <h1 class="text-center">Company Signup</h1>
+    <form nz-form (ngSubmit)="register()">
+      <div class="form-group">
+        <input nz-input class="form-control" placeholder="Username" [(ngModel)]="user.username" name="username"
+          required />
+      </div>
+      <div class="form-group">
+        <input nz-input class="form-control" placeholder="E-mail" [(ngModel)]="user.email" name="email" required />
+      </div>
+      <div class="form-group">
+        <input nz-input type="password" class="form-control" placeholder="Password" [(ngModel)]="user.password"
+          name="password" required />
+      </div>
+      <button nz-button class="btn btn-primary btn-block" [nzType]="'primary'">Register</button>
+      <div class="text-center mt-3">
+        Or <a routerLink="/login">Login now!</a>
+      </div>
+    </form>
+  </div>
+</div>

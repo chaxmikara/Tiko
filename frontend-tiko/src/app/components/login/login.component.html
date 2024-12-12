@@ -1,0 +1,23 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card p-4">
+        <h1 class="text-center">Vendor Login</h1>
+        <form nz-form (ngSubmit)="login()">
+            <div class="form-group">
+                <nz-input-group nzPrefixIcon="user">
+                    <input type="text" nz-input class="form-control" [(ngModel)]="credentials.username" name="username"
+                        placeholder="Username" />
+                </nz-input-group>
+            </div>
+            <div class="form-group">
+                <nz-input-group nzPrefixIcon="lock">
+                    <input type="password" nz-input class="form-control" [(ngModel)]="credentials.password"
+                        name="password" placeholder="Password" />
+                </nz-input-group>
+            </div>
+            <button nz-button class="btn btn-primary btn-block" [nzType]="'primary'">Login</button>
+            <div class="text-center mt-3">
+                Or <a routerLink="/register">register now!</a>
+            </div>
+        </form>
+    </div>
+</div>

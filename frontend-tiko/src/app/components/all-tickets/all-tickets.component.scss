@@ -1,0 +1,19 @@
+.container {
+    .card {
+        height: 100%;
+    }
+
+    .card-img-top {
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .card-title {
+        color: #108ee9;
+    }
+
+    .card-footer {
+        display: flex;
+        justify-content: space-between;
+    }
+}
