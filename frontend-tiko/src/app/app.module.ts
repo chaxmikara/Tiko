@@ -20,10 +20,20 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
 
 import { UserOutline, LockOutline } from '@ant-design/icons-angular/icons';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
 
 import { AuthService } from './services/auth.service';
 import { LogService } from './services/log.service';
 import { AdminService } from './services/admin.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DemoNgZorroAntdModule } from './DemoNgZorroAndModule';
+import { ClientDashboardComponent } from './components/client-dashboard/client-dashboard.component';
+import { WelcomeComponent } from './components/welcome/welcome.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+
+
+const icons = [UserOutline, LockOutline];
 
 @NgModule({
   declarations: [
@@ -31,11 +41,15 @@ import { AdminService } from './services/admin.service';
     RegisterComponent,
     LoginComponent,
     AdminDashboardComponent,
-    AllTicketsComponent
+    AllTicketsComponent,
+    ClientDashboardComponent,
+    WelcomeComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
     NzLayoutModule,
@@ -45,14 +59,20 @@ import { AdminService } from './services/admin.service';
     NzInputModule,
     NzIconModule,
     NzFormModule,
+    NzIconModule.forRoot(icons),
     NzButtonModule,
     NzNotificationModule,
+    NzNotificationModule,
+    BrowserAnimationsModule,
+    NzModalModule,
+    DemoNgZorroAntdModule
   ],
   providers: [
     AuthService,
     LogService,
     AdminService,
-    { provide: NZ_ICONS, useValue: [UserOutline, LockOutline] }
+    { provide: NZ_ICONS, useValue: [UserOutline, LockOutline] },
+    { provide: NZ_I18N, useValue: en_US }
   ],
   bootstrap: [AppComponent]
 })

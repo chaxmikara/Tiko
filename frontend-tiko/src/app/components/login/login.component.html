@@ -1,38 +1,23 @@
-<div class="bg">
-    <div class="parent">
-        <div class="child">
-            <div nz-row class="imgDiv">
-                <div nz-col nzSpan="24">
-                    <h1 style="margin-left: 100px;">Login</h1>
-                </div>
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card p-4">
+        <h1 class="text-center">Vendor Login</h1>
+        <form nz-form (ngSubmit)="login()">
+            <div class="form-group">
+                <nz-input-group nzPrefixIcon="user">
+                    <input type="text" nz-input class="form-control" [(ngModel)]="credentials.username" name="username"
+                        placeholder="Username" />
+                </nz-input-group>
             </div>
-
-            <form nz-form (ngSubmit)="login()">
-                <nz-form-item>
-                    <nz-form-control nzErrorTip="Please input your username">
-                        <nz-input-group nzPrefixIcon="user">
-                            <input type="text" nz-input [(ngModel)]="credentials.username" name="username"
-                                placeholder="Username" />
-                        </nz-input-group>
-                    </nz-form-control>
-                </nz-form-item>
-
-                <nz-form-item>
-                    <nz-form-control nzErrorTip="Please input your password">
-                        <nz-input-group nzPrefixIcon="lock">
-                            <input type="password" nz-input [(ngModel)]="credentials.password" name="password"
-                                placeholder="Password" />
-                        </nz-input-group>
-                    </nz-form-control>
-                </nz-form-item>
-
-                <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Login</button>
+            <div class="form-group">
+                <nz-input-group nzPrefixIcon="lock">
+                    <input type="password" nz-input class="form-control" [(ngModel)]="credentials.password"
+                        name="password" placeholder="Password" />
+                </nz-input-group>
+            </div>
+            <button nz-button class="btn btn-primary btn-block" [nzType]="'primary'">Login</button>
+            <div class="text-center mt-3">
                 Or <a routerLink="/register">register now!</a>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
-</div>
-
-<div class="gradient-background">
-    <router-outlet></router-outlet>
 </div>

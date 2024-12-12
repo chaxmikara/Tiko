@@ -1,0 +1,32 @@
+.navbar {
+    .navbar-brand {
+        font-size: 1.5rem;
+        /* Increase font size for the brand */
+    }
+
+    .nav-link {
+        font-size: 1.25rem;
+
+    }
+
+    a {
+        font-size: 2.25rem;
+    }
+
+    .navbar-collapse {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .navbar-nav {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .nav-item {
+            margin-left: 15px;
+        }
+
+
+    }
+}

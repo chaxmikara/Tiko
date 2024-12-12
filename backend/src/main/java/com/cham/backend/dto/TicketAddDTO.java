@@ -1,9 +1,9 @@
 package com.cham.backend.dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Lob;
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Date;
 
 @Data
 public class TicketAddDTO {
@@ -20,5 +20,11 @@ public class TicketAddDTO {
     private byte[] returnedImg;
 
     private Long userId;
+
+    private int numberOfTickets;
+
+    private int releaseRate;
+
+    private String date;
 }
 

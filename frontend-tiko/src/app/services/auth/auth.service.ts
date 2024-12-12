@@ -9,7 +9,7 @@ import { tap } from 'rxjs/operators';
 export class AuthService {
   private baseUrl = 'http://localhost:8080/auth';  // url of the backend api
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   // register a new user
   register(user: any): Observable<any> {
@@ -24,7 +24,7 @@ export class AuthService {
           // ensure localStorage is accessible in the browser
           if (typeof window !== 'undefined' && window.localStorage) {
             localStorage.setItem('auth_token', response.token);
-            localStorage.setItem('user_role', response.role); 
+            localStorage.setItem('user_role', response.role);
           }
         }
       })
@@ -33,8 +33,8 @@ export class AuthService {
 
   // create authorization headers with jwt token for authenticated requests
   private getAuthHeaders(): HttpHeaders {
-    const token = typeof window !== 'undefined' && window.localStorage 
-      ? localStorage.getItem('auth_token') 
+    const token = typeof window !== 'undefined' && window.localStorage
+      ? localStorage.getItem('auth_token')
       : null;
     return token ? new HttpHeaders().set('Authorization', `Bearer ${token}`) : new HttpHeaders();
   }
@@ -42,8 +42,8 @@ export class AuthService {
   // check if the user is logged in based on the presence of a jwt token
   isLoggedIn(): boolean {
     // ensure localStorage is accessible in the browser
-    return typeof window !== 'undefined' && window.localStorage 
-      ? !!localStorage.getItem('auth_token') 
+    return typeof window !== 'undefined' && window.localStorage
+      ? !!localStorage.getItem('auth_token')
       : false;  // return false if localStorage is not available
   }
 

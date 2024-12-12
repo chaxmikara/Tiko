@@ -1,28 +1,56 @@
-<h3>Client Dashboard</h3>
-<div class="bg">
-    <div style="margin-top: 10px;" class="child" *ngFor="let ticket of tickets">
-        <div nz-row>
-            <div nz-col nzSpan="8">
-                <img class="profile" [src]="updateImg(ticket.returnedImg)" [alt]="ticket.title"
-                    style="height: 130px; width: 200px; border-radius: 10px;" />
-            </div>
-            <div nz-col nzSpan="16">
-                <h2 style="cursor: pointer; color: #108ee9;">{{ ticket.title }}</h2>
-                <hr>
-                <h5>Price: <b>${{ ticket.price.toFixed(2) }}</b></h5>
-                <h5>Description: <b>{{ ticket.description }}</b></h5>
-                <hr>
-                <div style="float: right;">
-                    <button nzSize="small" nz-button nzType="primary"
-                        [routerLink]="['/company/ticket', ticket.id]">Update</button>
-                    <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary" nzDanger
-                        (click)="deleteTicket(ticket.id)">Delete</button>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row mt-4">
+                <div *ngFor="let ticket of tickets" class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img class="card-img-top" [src]="updateImg(ticket.returnedImg)" [alt]="ticket.title" />
+                        <div class="card-body">
+                            <h5 class="card-title">{{ ticket.title }}</h5>
+                            <p class="card-text">Price: <b>${{ ticket.price.toFixed(2) }}</b></p>
+                            <p class="card-text">Description: <b>{{ ticket.description }}</b></p>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between">
+                            <button class="btn btn-primary btn-sm" (click)="startTicketing(ticket.id)">Start
+                                Ticketing</button>
+                            <button class="btn btn-secondary btn-sm" (click)="stopTicketing(ticket.id)">Stop
+                                Ticketing</button>
+                            <button class="btn btn-danger btn-sm" (click)="deleteTicket(ticket.id)">Delete</button>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div *ngIf="tickets.length === 0" class="text-center mt-5">
+                <p>No tickets available</p>
+            </div>
         </div>
-    </div>
 
-    <div *ngIf="tickets.length === 0" class="no-tickets">
-        <p>No tickets available</p>
+        <div class="col-md-4">
+            <div class="mt-5">
+                <h3>Buyers Log</h3>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>First Name</th>
+                            <th>Phone Number</th>
+                            <th>Price</th>
+                            <th>Timestamp</th>
+                            <th>Ticket ID</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let buyer of buyers">
+                            <td>{{ buyer.id }}</td>
+                            <td>{{ buyer.firstName }}</td>
+                            <td>{{ buyer.phoneNumber }}</td>
+                            <td>{{ buyer.price }}</td>
+                            <td>{{ buyer.timestamp }}</td>
+                            <td>{{ buyer.ticketId }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>

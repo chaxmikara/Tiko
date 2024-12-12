@@ -1,53 +1,32 @@
-.bg {
-  background-color: #f0f2f5;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.container {
+    height: 100vh;
 }
 
-.parent {
-  width: 500px;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
+.card {
+    width: 400px;
 
-.child {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    border-radius: 8px;
 }
 
 h1 {
-  color: #1890ff;
-  font-weight: 500;
+
+    font-weight: 500;
+    margin-bottom: 20px;
 }
 
-form {
-  width: 100%;
-  margin-top: 20px;
+.form-group {
+    margin-bottom: 20px;
 }
 
-.ant-form-item {
-  margin-bottom: 10px;
-}
-
-.ant-input {
-  width: 100%;
-}
-
-.ant-btn-primary {
-  width: 100%;
-  margin-top: 10px;
+button {
+    width: 100%;
 }
 
 a {
-  color: #1890ff;
-  text-decoration: none;
+
+    text-decoration: none;
 }
 
 a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }

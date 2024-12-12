@@ -6,6 +6,7 @@ import lombok.Data;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import java.util.Date;
 import java.util.Set;
 
 
@@ -20,6 +21,9 @@ public class TicketAdd {
     private String title;
     private String description;
     private double price;
+    private int releaseRate;
+    private int numberOfTickets;
+    private String date;
 
     @Lob
     @Column(columnDefinition = "LONGBLOB")
@@ -30,6 +34,7 @@ public class TicketAdd {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 
+
     public TicketAddDTO getTicketAddDTO() {
         TicketAddDTO ticketAddDTO = new TicketAddDTO();
 
@@ -38,6 +43,9 @@ public class TicketAdd {
         ticketAddDTO.setDescription(description);
         ticketAddDTO.setPrice(price);
         ticketAddDTO.setReturnedImg(img);
+        ticketAddDTO.setReleaseRate(releaseRate);
+        ticketAddDTO.setNumberOfTickets(numberOfTickets);
+        ticketAddDTO.setDate(date);
 
         return ticketAddDTO;
     }
