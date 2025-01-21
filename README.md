@@ -1,4 +1,4 @@
-# Real-Time Event Ticketing System
+# TIKO ticket booking system
 
 Welcome to the TIKO Ticketing System repository! This platform is designed to provide users with an efficient and user-friendly way to browse, book, and manage event tickets in real time.
 
